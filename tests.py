@@ -1,7 +1,6 @@
-from logging import (
-    INFO,
-    ERROR,
-)
+import logging
+logger = logging.getLogger(__name__)
+
 import pytest
 
 import fastauth
@@ -11,7 +10,7 @@ from fastauth import (
 )
 
 def test_register_login(caplog):
-    caplog.set_level(INFO)
+    caplog.set_level(logging.INFO)
 
     user_db = EmailUserDatabase(database_url='sqlite:///:memory:')
     user_db.migrate()

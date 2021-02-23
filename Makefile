@@ -16,3 +16,6 @@ migrate:
 	pw_migrate migrate \
 		--directory "$(ROOT_DIR)/fastauth/migrations" \
 		--database "$(FASTAUTH_DATABASE)"
+
+test:
+	pytest "$(ROOT_DIR)/tests.py" -v --log-cli-level INFO
