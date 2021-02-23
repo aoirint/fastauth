@@ -21,4 +21,7 @@ type:
 	mypy "$(ROOT_DIR)"
 
 test:
-	pytest "$(ROOT_DIR)/tests.py" -v --log-cli-level INFO
+	pytest "$(ROOT_DIR)/tests" --log-cli-level INFO
+
+server:
+	uvicorn fastauth.email.server:app
