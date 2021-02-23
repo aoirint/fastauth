@@ -17,5 +17,8 @@ migrate:
 		--directory "$(ROOT_DIR)/fastauth/migrations" \
 		--database "$(FASTAUTH_DATABASE)"
 
+type:
+	mypy "$(ROOT_DIR)"
+
 test:
 	pytest "$(ROOT_DIR)/tests.py" -v --log-cli-level INFO

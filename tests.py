@@ -4,7 +4,7 @@ logger = logging.getLogger(__name__)
 import pytest
 
 import fastauth
-from fastauth import (
+from fastauth.email import (
     EmailUserDatabase,
     EmailUser,
 )

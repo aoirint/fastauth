@@ -1,2 +1,1 @@
-from .EmailUser import *
-from .EmailUserDatabase import *
+from . import email
