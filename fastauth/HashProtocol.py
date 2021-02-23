@@ -1,6 +1,6 @@
 from typing import Protocol
 
-class HashProtocol:
+class HashProtocol(Protocol):
     def hash(self, secret: str):
         pass
 
