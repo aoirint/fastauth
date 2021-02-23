@@ -1,8 +1,4 @@
-```python
-import fastauth
-
-fastauth.server(port=8000)
-```
+# fastauth
 
 ```sh
 make makemigrations
@@ -14,31 +10,9 @@ make migrate FASTAUTH_DATABASE=sqlite:///db.sqlite3
 FASTAUTH_DATABASE=sqlite:///db.sqlite3 make migrate
 ```
 
-
+## TODO
 ```python
-from fastapi import FastAPI
+import fastauth
 
-app = FastAPI()
-
-@app.get('/register')
-def register(email: str, password: str):
-    pass
-
-@app.get('/login')
-def login(email: str, password: str):
-    pass
-
-
-from dataclasses import dataclass
-
-@dataclass
-class Server:
-    host: str = '127.0.0.1'
-    port: int = 8000
-
-    def __post_init__(self):
-        pass
-
-    def start():
-        pass
+fastauth.server(port=8000)
 ```

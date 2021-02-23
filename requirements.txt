@@ -1,3 +1,6 @@
 peewee >= 3.14.1
 peewee_migrate >= 1.4.0
 passlib >= 1.7.4
+email_validator >= 1.1.2
+fastapi >= 0.63.0
+pydantic >= 1.7.3

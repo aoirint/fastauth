@@ -25,7 +25,7 @@ from .types import (
     Email,
     HashedPassword,
 )
-from ..HashProtocol import HashProtocol
+from ..common.HashProtocol import HashProtocol
 
 import logging
 logger = logging.getLogger(__name__)
