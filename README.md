@@ -4,6 +4,16 @@ import fastauth
 fastauth.server(port=8000)
 ```
 
+```sh
+make makemigrations
+make makemigrations FASTAUTH_DATABASE=sqlite:///db.sqlite3
+FASTAUTH_DATABASE=sqlite:///db.sqlite3 make makemigrations
+
+make migrate
+make migrate FASTAUTH_DATABASE=sqlite:///db.sqlite3
+FASTAUTH_DATABASE=sqlite:///db.sqlite3 make migrate
+```
+
 
 ```python
 from fastapi import FastAPI

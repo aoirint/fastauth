@@ -1,38 +1,50 @@
-from dataclasses import dataclass
-from typing import Optional
-from .types import Email, Password
+from peewee import (
+    Model,
+    UUIDField,
+    CharField,
+)
+from playhouse.hybrid import hybrid_property
 
-import peewee
+import uuid
+import typing
 
-@dataclass
-class EmailUser(peewee.Model):
-    id = peewee.UUIDField()
-    email: peewee.Email
-    password: Password
+from .types import (
+    UserId,
+    Email,
+    HashedPassword,
+)
 
-    @staticmethod
-    def authenticate(email: Email, password: Password) -> EmailUser:
-        try:
-            user: Optional[EmailUser] = EmailUser.objects.get(email=email)
-            assert user is not None
-        except EmailUser.DoesNotExist:
-            raise UserNotFound(email=email, password=password)
-
-        if user.password != password:
-            raise InvalidPassword(email=email, password=password)
-
-        return user
+class EmailUser(Model):
+    _id = UUIDField(column_name='id', primary_key=True, default=uuid.uuid4)
+    _email = CharField(column_name='email', max_length=255, unique=True)
+    _password = CharField(column_name='password', max_length=255)
 
 
-@dataclass
-class UserException(Exception):
-    email: Email
-    password: Password
+    @hybrid_property
+    def id(self) -> UserId:
+        return typing.cast(UserId, self._id)
 
-@dataclass
-class UserNotFound(UserException):
-    pass
+    @id.setter
+    def set_id(self, id: uuid.UUID):
+        self._id = typing.cast(uuid.UUID, id)
 
-@dataclass
-class InvalidPassword(UserException):
-    pass
+
+    @hybrid_property
+    def email(self) -> Email:
+        return typing.cast(Email, self._email)
+
+    @email.setter
+    def set_email(self, email: Email):
+        self._email = typing.cast(str, email)
+
+
+    @hybrid_property
+    def password(self) -> HashedPassword:
+        return typing.cast(HashedPassword, self._password)
+
+    @password.setter
+    def set_password(self, password: HashedPassword):
+        self._password = typing.cast(str, password)
+
+    class Meta:
+        table_name = 'fastauth_emailuser'
