@@ -2,7 +2,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 import pytest
-import requests
 import json
 
 from fastapi.testclient import TestClient
