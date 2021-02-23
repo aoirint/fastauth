@@ -76,7 +76,7 @@ class EmailUserDatabase:
             except IntegrityError:
                 raise EmailUserDatabase.UserAlreadyExists()
 
-            logger.info(f'User registeried with email {email}: {user.id}')
+            logger.info(f'User registered with email {email}: {user.id}')
             return user
 
 
